@@ -5,35 +5,30 @@
 	</head>
 	<body>
 		<%- include('partials/nav'); %>
-
 		<h1>Mur d'images</h1>
-		<div id="image-wall">
-		<% photos.forEach(photo => { %>
-			<figure class="imageSelect" style="width: 10%">
-				<% fichierSmallImage = photo.fichier.split('.')[0] + '_small.jpg' %>
-				<a href="/image/<%= photo.id %>">
-					<img class="image-wall-icon" src="/public/images/<%=fichierSmallImage%>">
-				</a>
-				<figcaption class="image-info">
-								<span><span id="views-img-<%= photo.id %>"><%= photo.views %></span>&#128065;</span>
-								<span><span id="likes-photo-<%= photo.id %>"><%= photo.likes %></span><button class="like-btn" onclick="like(<%= photo.id %>)">&hearts;</button></span>
-							</figcaption>
-			</figure>
-		<% }); %>
+		<label for="sort-selection">Tris des images par</label>
+		<select name="sort-selection" id="sort-selection" onchange="update_wall_sort_select(this, <%= current_page_id %>)">
+			<option selected>id</option>
+			<option>date</option>
+			<option>likes</option>
+			<option>views</option>
+			<option>photographe</option>
+		</select>
+		<div id="image-wall"></div>
+		<div>
+			<% if(locals.previous_page_id != undefined) { %>
+				<a href="/mur-images/<%= previous_page_id %>">&larr; page <%= previous_page_id %></a>
+			<% } %>
+			<% if(locals.next_page_id != undefined) { %>
+				<a href="/mur-images/<%= next_page_id %>">page <%= next_page_id %> &rarr;</a>
+			<% } %>
 		</div>
 		<%- include('partials/footer'); %>
-			<script src="/public/scripts/main.js"></script>
-			<script>
-				async function like(image_id){
-					const liked = await send_like(image_id);
-					if( liked ) {
-						const elem = document.querySelector("#likes-photo-"+image_id);
-						const photo_data = await fetch_photo_data(image_id);
-						if( elem != undefined && photo_data != undefined ){
-							elem.textContent = photo_data.likes;
-						}
-					}
-				}
-			</script>
+		
+		<script src="/public/scripts/main.js"></script>
+		<script src="/public/scripts/mur.js"></script>
+		<script>
+			refresh_wall("<%= sorting %>", <%= current_page_id %>);
+		</script>
 	</body>
 </html>

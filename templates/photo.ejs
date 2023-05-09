@@ -5,7 +5,10 @@
 	</head>
 	<body>
 		<%- include('partials/nav'); %>
-		<h1><%= photo.nom %> par <a href="/profile/<%= photographe.id %>"><%= photographe.prenom[0] %>.<%=photographe.nom%></a></h1>
+		<h1><%= photo.nom %></h1>
+		<h3>
+			Posté le <%= photo.date.toLocaleString("fr-FR") %> par <a href="/profile/<%= photographe.id %>"><%= photographe.prenom[0] %>.<%=photographe.nom%></a>
+		</h3>
 		<div id="selectedImage-container">
 			<img id="selectedImage" src="/public/images/<%=photo.fichier%>">
 		</div>
@@ -13,59 +16,34 @@
 			<div id="imageStats">
 				<span id="viewCount"><%= photo.views %></span>&#128065; | <span id="likeCount"><%= photo.likes %></span>&hearts;
 			</div>
-			<form action="/like/<%= photo.id %>" onsubmit="like(event, this)" method="POST">
+			<form action="/like/<%= photo.id %>" onsubmit="like(event, this, <%= photo.id %>)" method="POST">
 				<input class="like-btn" type="submit" value="Like &hearts;">
 			</form>
 			<div id="comment-container">
 				Commentaires :
 				<div id="comments">
 					<% if( comments.length == 0 ) {%>
-					<div>Aucun commentaire</div>
+						<div>Aucun commentaire</div>
 					<% } else { %>
-					<% comments.forEach((comment) => { %>
-					<div><%= comment.texte %></div>
-					<% }) %>
+						<% comments.forEach((comment) => { %>
+							<div><%= comment.texte %></div>
+						<% }) %>
 					<% } %>
 				</div>
 
-				<form action="/comment/<%= photo.id %>" onsubmit="fcomment(event, this)" method="POST" enctype="multipart/form-data">
+				<form action="/comment/<%= photo.id %>" onsubmit="fcomment(event, this, <%= photo.id %>)" method="POST" enctype="multipart/form-data">
 					<input required type="text" maxlength=64 autocomplete="off" id="comment" name="comment">
 					<input type="submit" value="Ajouter un commentaire">
+				</form>
 			</div>
 		</div>
 		</div>
 		<%- include('partials/footer'); %>
 
 		<script src="/public/scripts/main.js"></script>
+		<script src="/public/scripts/photo.js"></script>
 		<script>
-			async function like(event, form){
-				event.preventDefault();
-				const result_code = await send_like(<%= photo.id %>);
-				if( result_code === 200 ) {
-					const elem = document.querySelector("#likeCount");
-					const photo_data = await fetch_photo_data(<%= photo.id %>);
-					if( elem != undefined && photo_data != undefined ){
-						elem.textContent = photo_data.likes;
-					}
-				}
-			}
-			async function fcomment(event, form){
-				event.preventDefault();
-				const result_code = await send_form_jayson(form);
-				if(result_code === 200){
-					form.reset();
-					const comments_elem = document.getElementById("comments");
-					const comments = await fetch_photo_comments(<%= photo.id %>);
-					if( comments.length == 0 ) {
-						comments_elem.innerHTML = '<div>Aucun commentaire</div>';
-					} else {
-						comments_elem.innerHTML = "";
-						comments.forEach(comment => {
-							comments_elem.innerHTML += `<div>${comment.texte}</div>`
-						});
-					}
-				}
-			}
+			update_stats(<%= photo.id %>);
 		</script>
 	</body>
 </html>

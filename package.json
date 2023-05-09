@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "clean": "./db_lazy.sh c",
-    "dev": "./db_lazy.sh cp & npm run scss & nodemon server.js",
+    "dev": "./db_lazy.sh cp && node server.js",
     "scss": "sass --watch ./scss/main.scss ./public/styles/main.css"
   },
   "author": "",

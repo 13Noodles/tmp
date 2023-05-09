@@ -2,13 +2,16 @@ const express = require('express')
 const router = express.Router();
 const queries = require('./queries');
 
+const photo_per_page = 10;
+
 router.use((req,res,next) => {
 	console.log(`get router : ${req.url}`);
 	next();
 });
 
 router.get('/', (req, res) => {
-	res.redirect('/public/index.html');
+	// res.redirect('/public/index.html');
+	res.redirect('/mur-images');
 });
 
 router.get('/index', (req, res) => {
@@ -16,18 +19,38 @@ router.get('/index', (req, res) => {
 });
 
 router.get('/favicon.ico', (req, res) => {
-	res.redirect('/public/favicon.ico');
+	res.redirect('/public/images/favicon.ico');
 })
-
 router.get('/mur-images', async (req, res) => {
-	try {
-		const data = await queries.query_photos();
+	res.redirect('/mur-images/0');
+});
+
+
+router.get('/mur-images/:page', async (req, res) => {
+	res.redirect(`/mur-images/${req.params.page}/id`);
+});
+
+router.get('/mur-images/:page/:sort', async (req, res) => {
+	const page_id = Number(req.params.page);
+	const sort = req.params.sort || "id";
+	if(page_id === undefined || page_id < 0){
+		res.redirect('/mur-images/0');
+	} else {
+		let next_page_id = page_id+1;
+		const next_photo_data = await queries.query_photo(photo_per_page*(page_id+1)+1);
+		if(next_photo_data === undefined){
+			next_page_id = undefined;
+		}
+		let previous_page_id = page_id-1;
+		if(previous_page_id < 0){
+			previous_page_id = undefined;
+		}
 		res.render('mur', {
-			photos: data
-		})
-	} catch (e) {
-		console.error(e);
-		res.send(e);
+			current_page_id: page_id,
+			next_page_id: next_page_id,
+			previous_page_id: previous_page_id,
+			sorting: sort
+		});
 	}
 });
 

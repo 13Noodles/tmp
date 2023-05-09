@@ -118,6 +118,39 @@ async function query_photos() {
 	return await run_query(query);
 }
 
+async function query_photos_sort_date() {
+	const query = `
+		SELECT *
+		FROM photos
+		ORDER BY date DESC;
+	`;
+	return await run_query(query);
+}
+async function query_photos_sort_likes() {
+	const query = `
+		SELECT *
+		FROM photos
+		ORDER BY likes DESC;
+	`;
+	return await run_query(query);
+}
+async function query_photos_sort_views() {
+	const query = `
+		SELECT *
+		FROM photos
+		ORDER BY views DESC;
+	`;
+	return await run_query(query);
+}
+async function query_photos_sort_photographe() {
+	const query = `
+		SELECT *
+		FROM photos
+		ORDER BY id_photographe DESC;
+	`;
+	return await run_query(query);
+}
+
 async function query_photo(photo_id) {
 	const query = `
 		SELECT *
@@ -190,6 +223,10 @@ module.exports = {
 	query_photographe_photos,
 	query_photo,
 	query_photos,
+	query_photos_sort_date,
+	query_photos_sort_likes,
+	query_photos_sort_views,
+	query_photos_sort_photographe,
 	query_photo_comments,
 
 	add_photo_view,

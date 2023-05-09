@@ -1,5 +1,5 @@
 html {
-  scrollbar-color: red;
+  scrollbar-color: lightgreen;
   background-color: #333;
   color: lightgreen;
 }
@@ -9,12 +9,12 @@ h1 {
 }
 
 body::-webkit-scrollbar {
-  background-color: red;
+  background-color: lightgreen;
   width: 0.5vw;
 }
 
 body::-webkit-scrollbar-thumb {
-  background: red;
+  background: lightgreen;
 }
 
 a {
