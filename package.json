@@ -1,0 +1,21 @@
+{
+  "name": "uniWebDb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "clean": "./db_lazy.sh c",
+    "dev": "./db_lazy.sh cp & npm run scss & nodemon server.js",
+    "scss": "sass --watch ./scss/main.scss ./public/styles/main.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "pg": "^8.7.3",
+    "scss": "^0.2.4"
+  }
+}

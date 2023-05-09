@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <%- include('partials/head', {title: "Mur d'image"}); %>
+	</head>
+	<body>
+		<%- include('partials/nav'); %>
+
+		<h1>Mur d'images</h1>
+		<div id="image-wall">
+		<% photos.forEach(photo => { %>
+			<figure class="imageSelect" style="width: 10%">
+				<% fichierSmallImage = photo.fichier.split('.')[0] + '_small.jpg' %>
+				<a href="/image/<%= photo.id %>">
+					<img class="image-wall-icon" src="/public/images/<%=fichierSmallImage%>">
+				</a>
+				<figcaption class="image-info">
+								<span><span id="views-img-<%= photo.id %>"><%= photo.views %></span>&#128065;</span>
+								<span><span id="likes-photo-<%= photo.id %>"><%= photo.likes %></span><button class="like-btn" onclick="like(<%= photo.id %>)">&hearts;</button></span>
+							</figcaption>
+			</figure>
+		<% }); %>
+		</div>
+		<%- include('partials/footer'); %>
+			<script src="/public/scripts/main.js"></script>
+			<script>
+				async function like(image_id){
+					const liked = await send_like(image_id);
+					if( liked ) {
+						const elem = document.querySelector("#likes-photo-"+image_id);
+						const photo_data = await fetch_photo_data(image_id);
+						if( elem != undefined && photo_data != undefined ){
+							elem.textContent = photo_data.likes;
+						}
+					}
+				}
+			</script>
+	</body>
+</html>

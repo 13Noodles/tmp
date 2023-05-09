@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<%- include('partials/head', {title: "Upload"} ); %>
+	</head>
+	<body>
+		<%- include('partials/nav'); %>
+		<h1>Ajout photographe</h1>
+
+		<form action="/add/photographe" onsubmit="send(event,this)" method="POST" enctype="multipart/form-data">
+			<label for="prenom">Prenom</label>
+			<input required type="text" id="prenom" name="prenom">
+			<label for="nom">Nom</label>
+			<input required type="text" id="nom" name="nom">
+			<input type="submit" value="valider">
+		</form>
+		<div id="info"></div>
+		<%- include('partials/footer'); %>
+		
+		<script src="/public/scripts/main.js"></script>
+		<script>
+			async function send(event,form) {
+				event.preventDefault();
+				const result_code = await send_form_jayson(form);
+				if(result_code === 200){
+					document.querySelector('#info').textContent = "Photographe ajouté";
+					form.reset();
+				} else if(result_code === 204){
+					document.querySelector('#info').textContent = "Ce photographe existe deja";
+					form.reset();
+				} else {
+					document.querySelector('#info').textContent = "Erreur";
+				}
+			}
+		</script>
+	</body>
+</html>

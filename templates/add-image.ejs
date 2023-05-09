@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<%- include('partials/head', {title: "Upload"} ); %>
+	</head>
+	<body>
+		<%- include('partials/nav'); %>
+		<h1>Ajout d'image</h1>
+		<form action="/add/photo" onsubmit="send(event, this)" method="POST" enctype="multipart/form-data">
+			<label>nom de l'image</label>
+			<input required type="text" name="filename">
+			<select name="photographe">
+				<option value="">photographe</option>
+				<% photographes.forEach((photographe) => {%>
+				<option value="<%= photographe.id %>"> <%= photographe.prenom %> <%= photographe.nom %> </option>
+				<% }) %> 
+			</select>
+			<input required type="file" value="fichier" name="fichier">
+			<input type="submit" value="valider">
+		</form>
+
+		<div id="info"></div>
+		<%- include('partials/footer'); %>
+		
+		<script src="/public/scripts/main.js"></script>
+		<script>
+			async function send(event,form) {
+				event.preventDefault();
+				const result = await send_form_multipart(form);
+				if(result.status === 200){
+					document.querySelector('#info').textContent = "Image ajouté";
+					form.reset();
+				} else if(result.status === 204){
+					document.querySelector('#info').textContent = "Erreur?";
+					form.reset();
+				} else {
+					document.querySelector('#info').textContent = "Erreur";
+				}
+			}
+		</script>
+	</body>
+</html>

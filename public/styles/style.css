@@ -1,0 +1,210 @@
+body {
+    background-color: #333;
+    color: #fc3;
+}
+
+/* scollbar pour firefox (ca ne marche pas si c'est sur le body)*/
+html {
+    scrollbar-color: #fc3 rgba(0, 0, 0, 1);
+    overflow-y: scroll;
+}
+
+/* scollbar pour chromium (et probablement d'autre navigateurs) */
+body::-webkit-scrollbar {
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 0.5vw;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #fc3;
+}
+
+a {
+    color: #fe5;
+}
+
+nav {
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 1em;
+}
+
+nav>a {
+    text-decoration: none;
+    background-color: #222;
+    border: 1px solid black;
+    border-radius: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+footer {
+    position: sticky;
+    bottom: 0px;
+    right: 0px;
+    text-align: right;
+}
+
+.align-center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+
+div.image-wall {
+    width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+img.image-wall-icon {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 10%;
+}
+
+img.icon {
+    height: 10em;
+    width: 10em;
+    border-radius: 10%;
+}
+
+#selectedImage {
+    height: 65vh;
+    width: 50vw;
+    object-fit: contain;
+}
+
+figure.imageSelect {
+    width: 20vw;
+    display: inline-block;
+    text-align: center;
+    padding: 0px;
+    margin: 0 px;
+}
+
+figure>a {
+    text-decoration: none;
+}
+
+#selectPreviousImage,
+#selectNextImage {
+    height: 10vmin;
+    width: auto;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 10%;
+}
+
+.like-btn {
+    color: red;
+    border-radius: 1em;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid black;
+    text-size: large;
+}
+
+button.like-btn:hover {
+    color: black;
+    background-color: red;
+    outline: 1px solid red;
+}
+
+#imageInfo {
+    width: 80%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#imageInfo>form {
+    display: inline-block;
+}
+
+#imageDescription {
+    margin: 1em;
+}
+
+.imageStats {
+    width: 30%;
+}
+
+/* TODO: fix ca */
+span#viewCount, span#likeCount {
+    width: 50vw;
+}
+
+th,
+td {
+    text-align: center;
+    background-color: #222;
+    border: 1px solid #111;
+    padding: 1em;
+}
+
+figcaption.image-info>span:first-child {
+    text-align: left;
+    width: 45%;
+    float: left;
+}
+
+figcaption.image-info>span:last-child {
+    text-align: right;
+    width: 50%;
+    float: right;
+}
+
+#comment-container {
+    width: 30%;
+		background-color: rgba(0,0,0,0.1);
+}
+
+button {
+	border: 1px solid #000;
+	border-radius: 0;
+	color: #000;
+	background-color: #fc2;
+}
+
+input[type=text]{
+	background-color: #fc2;
+	border: 1px solid #000;
+	color: #000;
+	background-color: #fc2;;
+}
+
+#comment-input {
+    margin-top: 1em;
+    width: 100%;
+}
+
+
+#big-margin {
+    margin: 10%;
+}
+
+#liked-text {
+    font-weight: bold;
+    color: red;
+}
+
+#selectedImage-container {
+    text-align: center;
+    margin: auto;
+}
+
+/*
+*:hover {
+    outline: 1px dotted red;
+}*/

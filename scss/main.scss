@@ -1,0 +1,184 @@
+$text_color: lightgreen;
+$accent_color: green;
+$accent_color2: lightgreen;
+$background_color: #333;
+$background_color_dark: #222;
+$scrollbar_color: red;
+
+html {
+	scrollbar-color: $scrollbar_color;
+	background-color: $background_color;
+	color: $text_color;
+}
+
+h1 {
+	color: $accent_color;
+}
+
+body::-webkit-scrollbar {
+	background-color: $scrollbar_color;
+	width: 0.5vw;
+}
+
+body::-webkit-scrollbar-thumb {
+	background: $scrollbar_color;
+}
+
+
+a {
+	color: $accent_color;
+	&:hover {
+		color: $accent_color2;
+	}
+}
+
+nav {
+	width: 80%;
+	margin-left: 10%;
+	margin-bottom: 1em;
+	&>a {
+		text-decoration: none;
+		background-color: $background_color_dark;
+		border: 1px solid black;
+		border-radius: 1em;
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+}
+
+footer {
+	position: sticky;
+	bottom: 0px;
+	right: 0px;
+	text-align: right;
+}
+
+
+.image-wall {
+	width: 90vw;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.image-wall-icon {
+	width: 100%;
+	aspect-ratio: 1/1;
+	object-fit: cover;
+	border-radius: 10%;
+}
+
+img.icon {
+	height: 10em;
+	width: 10em;
+	border-radius: 10%;
+}
+
+#selectedImage {
+	height: 65vh;
+	width: 50vw;
+	object-fit: contain;
+}
+
+
+figure{
+	&.imageSelect {
+		width: 20vw;
+		display: inline-block;
+		text-align: center;
+		padding: 0px;
+		margin: 0 px;
+	}
+	&>a {
+		text-decoration: none;
+	}
+}
+
+figcaption.image-info {
+	&>span:first-child {
+		text-align: left;
+		width: 45%;
+		float: left;
+	}
+	&>span:last-child {
+		text-align: right;
+		width: 50%;
+		float: right;
+	}
+}
+
+#selectPreviousImage, #selectNextImage {
+	height: 10vmin;
+	width: auto;
+	aspect-ratio: 1/1;
+	object-fit: cover;
+	border-radius: 10%;
+}
+
+.like-btn {
+	border-radius: 1em;
+	background-color: $background_color_dark;
+	border: 1px solid black;
+	&:hover {
+		color: black;
+		background-color: $accent_color;
+		outline: 1px solid black;
+	}
+}
+
+#imageInfo {
+	width: 80%;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	&>form {
+		display: inline-block;
+	}
+}
+
+#imageDescription {
+	margin: 1em;
+}
+
+.imageStats {
+	width: 30%;
+}
+
+#viewCount, #likeCount {
+	width: 50vw;
+}
+
+#comment-container {
+	width: 70%;
+	background-color: rgba(0,0,0,0.1);
+	text-align: left;
+}
+
+button {
+	border: 1px solid black;
+	border-radius: 0;
+	color: $text-color;
+	background-color: $background_color_dark;
+}
+
+input[type=text], input[type=file], input[type=submit], select {
+	background-color: $accent_color;
+	border: 1px solid black;
+	color: black;
+	background-color: $accent_color;
+}
+
+#comment-input {
+	margin-top: 1em;
+	width: 100%;
+}
+
+
+#big-margin {
+	margin: 10%;
+}
+
+#selectedImage-container {
+	text-align: center;
+	margin: auto;
+}

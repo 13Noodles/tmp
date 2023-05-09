@@ -1,0 +1,171 @@
+html {
+  scrollbar-color: red;
+  background-color: #333;
+  color: lightgreen;
+}
+
+h1 {
+  color: green;
+}
+
+body::-webkit-scrollbar {
+  background-color: red;
+  width: 0.5vw;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: red;
+}
+
+a {
+  color: green;
+}
+a:hover {
+  color: lightgreen;
+}
+
+nav {
+  width: 80%;
+  margin-left: 10%;
+  margin-bottom: 1em;
+}
+nav > a {
+  text-decoration: none;
+  background-color: #222;
+  border: 1px solid black;
+  border-radius: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+footer {
+  position: sticky;
+  bottom: 0px;
+  right: 0px;
+  text-align: right;
+}
+
+.image-wall {
+  width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.image-wall-icon {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 10%;
+}
+
+img.icon {
+  height: 10em;
+  width: 10em;
+  border-radius: 10%;
+}
+
+#selectedImage {
+  height: 65vh;
+  width: 50vw;
+  object-fit: contain;
+}
+
+figure.imageSelect {
+  width: 20vw;
+  display: inline-block;
+  text-align: center;
+  padding: 0px;
+  margin: 0 px;
+}
+figure > a {
+  text-decoration: none;
+}
+
+figcaption.image-info > span:first-child {
+  text-align: left;
+  width: 45%;
+  float: left;
+}
+figcaption.image-info > span:last-child {
+  text-align: right;
+  width: 50%;
+  float: right;
+}
+
+#selectPreviousImage, #selectNextImage {
+  height: 10vmin;
+  width: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 10%;
+}
+
+.like-btn {
+  border-radius: 1em;
+  background-color: #222;
+  border: 1px solid black;
+}
+.like-btn:hover {
+  color: black;
+  background-color: green;
+  outline: 1px solid black;
+}
+
+#imageInfo {
+  width: 80%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+#imageInfo > form {
+  display: inline-block;
+}
+
+#imageDescription {
+  margin: 1em;
+}
+
+.imageStats {
+  width: 30%;
+}
+
+#viewCount, #likeCount {
+  width: 50vw;
+}
+
+#comment-container {
+  width: 70%;
+  background-color: rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+button {
+  border: 1px solid black;
+  border-radius: 0;
+  color: lightgreen;
+  background-color: #222;
+}
+
+input[type=text], input[type=file], input[type=submit], select {
+  background-color: green;
+  border: 1px solid black;
+  color: black;
+  background-color: green;
+}
+
+#comment-input {
+  margin-top: 1em;
+  width: 100%;
+}
+
+#big-margin {
+  margin: 10%;
+}
+
+#selectedImage-container {
+  text-align: center;
+  margin: auto;
+}
+
+/*# sourceMappingURL=main.css.map */
