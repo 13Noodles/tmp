@@ -23,7 +23,7 @@ async function send_form_jayson(form) {
 		},
 		body: JSON.stringify(data),
 	});
-	return result.status;
+	return result;
 }
 
 async function send_like(photo_id){

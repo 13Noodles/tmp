@@ -21,11 +21,13 @@
 		<script>
 			async function send(event,form) {
 				event.preventDefault();
-				const result_code = await send_form_jayson(form);
-				if(result_code === 200){
-					document.querySelector('#info').textContent = "Photographe ajouté";
+				const result = await send_form_jayson(form);
+				console.log(result)
+				info_elem = document.querySelector('#info');
+				if(result.status === 200){
+					info_elem.innerHTML = `Photographe ajouté <a href="/profile/${photographe_id}">ici</a>`;
 					form.reset();
-				} else if(result_code === 204){
+				} else if(result.status === 204){
 					document.querySelector('#info').textContent = "Ce photographe existe deja";
 					form.reset();
 				} else {

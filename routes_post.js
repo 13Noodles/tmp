@@ -27,11 +27,13 @@ router.post('/comment/:id', async (req, res) => {
 router.post('/add/photographe', async (req, res) => {
 	try {
 		const received_data = req.body;
-		const result = await queries.add_photographe(received_data.nom, received_data.prenom);
-		if(result === undefined){
-			res.sendStatus(204); // photographe already exists, nothing done
-		} else {
-			res.sendStatus(200); // photographe added
+		const added_id = await queries.add_photographe(received_data.nom, received_data.prenom);
+		if(added_id === undefined){ // photographe already exists, nothing done
+			res.sendStatus(204);
+		} else { // photographe added
+			res.json({
+				photographe_id: added_id
+			});
 		}
 	} catch(e){
 		console.error(e);

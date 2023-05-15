@@ -8,14 +8,13 @@
     "start": "node server.js",
     "clean": "./db_lazy.sh c",
     "dev": "./db_lazy.sh cp && node server.js",
-    "scss": "sass --watch ./scss/main.scss ./public/styles/main.css"
+    "devemon": "./db_lazy.sh cp && nodemon server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "pg": "^8.7.3",
-    "scss": "^0.2.4"
+    "pg": "^8.7.3"
   }
 }

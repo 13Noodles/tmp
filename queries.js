@@ -122,7 +122,7 @@ async function query_photos_sort_date() {
 	const query = `
 		SELECT *
 		FROM photos
-		ORDER BY date DESC;
+		ORDER BY date DESC, id DESC;
 	`;
 	return await run_query(query);
 }
@@ -130,7 +130,7 @@ async function query_photos_sort_likes() {
 	const query = `
 		SELECT *
 		FROM photos
-		ORDER BY likes DESC;
+		ORDER BY likes DESC, id DESC;
 	`;
 	return await run_query(query);
 }
@@ -138,7 +138,7 @@ async function query_photos_sort_views() {
 	const query = `
 		SELECT *
 		FROM photos
-		ORDER BY views DESC;
+		ORDER BY views DESC, id DESC;
 	`;
 	return await run_query(query);
 }
@@ -146,7 +146,7 @@ async function query_photos_sort_photographe() {
 	const query = `
 		SELECT *
 		FROM photos
-		ORDER BY id_photographe DESC;
+		ORDER BY id_photographe DESC, id DESC;
 	`;
 	return await run_query(query);
 }
@@ -205,9 +205,12 @@ async function add_photographe(nom, prenom) {
 	if( photographe_search_result == undefined){
 		const query = `
 			INSERT INTO photographes (nom, prenom)
-			VALUES ('${nom}', '${prenom}');
+			VALUES ('${nom}', '${prenom}')
+			LIMIT 1
+			RETURNING id;
 		`;
-		return await run_query(query);
+		result = await run_query(query);
+		return result[0].id;
 	} else {
 		return undefined;
 	}
